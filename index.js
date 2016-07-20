@@ -19,12 +19,29 @@ server.use(cors());
 server.get('/forecast/hourly/:lat,:lon', function(req, res){
   $http.get(baseUrl + apiKey + '/'+req.params.lat+','+req.params.lon)
        .then(function(response){
-         var resObj = {
+         var resObject = {
            latitude: response.data.latitude,
            longitude: response.data.longitude,
            hourly: response.data.hourly,
          };
-         res.status(200).json(resObj);
+         res.status(200).json(resObject);
+       })
+       .catch(function(error){
+         res.status(500).send({
+           msg: error
+         });
+       });
+});
+
+server.get('/forecast/daily/:lat,:lon', function(req, res){
+  $http.get(baseUrl + apiKey + '/'+req.params.lat+','+req.params.lon)
+       .then(function(response){
+         var responseObj = {
+           latitude: response.data.latitude,
+           longitude: response.data.longitude,
+           daily: response.data.daily,
+         };
+         res.status(200).json(responseObj);
        })
        .catch(function(error){
          res.status(500).send({
