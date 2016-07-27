@@ -68,7 +68,8 @@ server.get('/forecast/daily/:lat,:lon', function(req, res){
             tempMax: dailyData[i].temperatureMax,
             tempMin: dailyData[i].temperatureMin,
             humidity: dailyData[i].humidity,
-            precipProb: dailyData[i].precipProbability
+            precipProb: dailyData[i].precipProbability,
+            time: dailyData[i].time
           };
           dailyArr.push(o);
         }
